@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="el" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Βασίλης Αθανασίου | Συνθετική & Σωματική Ψυχοθεραπεία</title>
+    <meta name="description" content="Ο Βασίλης Αθανασίου είναι αδειούχος Ψυχολόγος και Ψυχοθεραπευτής στην Κυψέλη. Εξειδίκευση σε Συνθετική & Σωματική Ψυχοθεραπεία, άγχος, κατάθλιψη και ψυχοσωματικές διαταραχές.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ocean: {
+                            100: '#F0F4F8',
+                            300: '#9FB3C8',
+                            500: '#486581',
+                            800: '#102A43',
+                            900: '#0A1C2C',
+                        },
+                        sand: {
+                            50: '#F9F9F8',
+                            100: '#F0EFEA',
+                            300: '#D5D2C4',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'float-delayed': 'float 8s ease-in-out 4s infinite',
+                        'marquee': 'marquee 50s linear infinite',
+                        'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F0EFEA; }
+        ::-webkit-scrollbar-thumb { background: #9FB3C8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #486581; }
+
+        /* Reveal Logic */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Glass & Shadows */
+        .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.3); }
+        .lux-shadow { box-shadow: 0 30px 60px -15px rgba(10, 28, 44, 0.08); }
+        
+        /* Image Hover Zoom */
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom-container img { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .img-zoom-container:hover img { transform: scale(1.04); }
+
+        /* Marquee */
+        .marquee-container { display: flex; width: max-content; }
+        .marquee-container:hover { animation-play-state: paused; }
+
+        /* Lightbox */
+        #lightbox { opacity: 0; pointer-events: none; transition: opacity 0.5s ease; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        #lightbox.active { opacity: 1; pointer-events: auto; }
+        #lightbox img { transform: scale(0.95); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        #lightbox.active img { transform: scale(1); }
+    </style>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-sand-50 text-ocean-900 font-sans antialiased overflow-x-hidden selection:bg-ocean-300 selection:text-ocean-900">
+
+    <nav class="fixed w-full z-50 transition-all duration-500 glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex flex-col group">
+                <span class="font-serif italic text-3xl md:text-4xl text-ocean-800 tracking-wide group-hover:opacity-80 transition-opacity">Βασίλης Αθανασίου</span>
+                <span class="text-[0.65rem] md:text-xs tracking-[0.2em] uppercase text-ocean-500 font-medium mt-1">Συνθετικη & Σωματικη Ψυχοθεραπεια</span>
+            </a>
+            
+            <div class="hidden lg:flex items-center space-x-10">
+                <a href="#about" class="text-sm tracking-wide text-ocean-800 hover:text-ocean-500 transition-colors">Η ΠΡΟΣΕΓΓΙΣΗ</a>
+                <a href="#services" class="text-sm tracking-wide text-ocean-800 hover:text-ocean-500 transition-colors">ΥΠΗΡΕΣΙΕΣ</a>
+                <a href="#philosophy" class="text-sm tracking-wide text-ocean-800 hover:text-ocean-500 transition-colors">ΦΙΛΟΣΟΦΙΑ</a>
+                <a href="#space" class="text-sm tracking-wide text-ocean-800 hover:text-ocean-500 transition-colors">Ο ΧΩΡΟΣ</a>
+                <a href="#contact" class="px-8 py-3 bg-ocean-800 text-sand-50 rounded-none text-sm tracking-widest uppercase hover:bg-ocean-500 transition-all duration-300">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+            </div>
+
+            <button class="lg:hidden text-ocean-800 focus:outline-none" id="mobile-menu-btn">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-sand-50/95 backdrop-blur-xl shadow-2xl hidden flex-col items-center py-12 space-y-8 border-t border-ocean-100">
+            <a href="#about" class="text-xl font-serif italic text-ocean-800 mobile-link">Η Προσέγγιση</a>
+            <a href="#services" class="text-xl font-serif italic text-ocean-800 mobile-link">Υπηρεσίες</a>
+            <a href="#philosophy" class="text-xl font-serif italic text-ocean-800 mobile-link">Φιλοσοφία</a>
+            <a href="#space" class="text-xl font-serif italic text-ocean-800 mobile-link">Ο Χώρος</a>
+            <a href="#contact" class="px-10 py-4 bg-ocean-800 text-sand-50 tracking-widest text-sm uppercase mobile-link mt-4">Επικοινωνία</a>
+        </div>
+    </nav>
+
+    <section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-sand-100">
+        <div class="absolute top-0 left-0 w-1/2 h-full overflow-hidden pointer-events-none z-0">
+            <div class="absolute top-[10%] left-[-10%] w-[40vw] h-[40vw] rounded-full bg-ocean-300/20 blur-[100px] animate-float"></div>
+            <div class="absolute bottom-[10%] left-[20%] w-[30vw] h-[30vw] rounded-full bg-ocean-500/10 blur-[80px] animate-float-delayed"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10 mt-10 lg:mt-0">
+            
+            <div class="order-2 lg:order-1 relative reveal">
+                <div class="relative w-full max-w-[500px] mx-auto lg:ml-0 aspect-[4/5] img-zoom-container lux-shadow">
+                    <img src="https://github.com/agelmet/ATHANASIOU/blob/main/IMG_8856.JPG?raw=true" alt="Βασίλης Αθανασίου" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -bottom-6 -right-6 lg:-right-12 bg-white p-6 lux-shadow z-20 max-w-[240px] animate-[float_6s_ease-in-out_infinite]">
+                    <p class="font-serif italic text-xl text-ocean-800 mb-1">Αδειούχος Ψυχολόγος</p>
+                    <p class="text-xs text-ocean-500 uppercase tracking-widest">Αρ. Αδείας: 16596</p>
+                </div>
+            </div>
+
+            <div class="order-1 lg:order-2 reveal delay-200">
+                <span class="block text-ocean-500 text-xs md:text-sm tracking-[0.3em] uppercase mb-6 font-medium">Κεντρο Ψυχοθεραπειας | Κυψελη</span>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif text-ocean-900 leading-[1.1] mb-8">
+                    Η Γέφυρα μεταξύ <span class="italic text-ocean-500">Εγκεφάλου</span> και <span class="italic text-ocean-500">Σώματος.</span>
+                </h1>
+                <p class="text-lg text-ocean-800/80 mb-12 max-w-lg leading-relaxed font-light">
+                    Μια βαθιά, βιωματική πορεία θεραπείας. Συνδυάζουμε την επιστήμη της Νευροψυχολογίας με τη Σωματική Ψυχοθεραπεία για να επαναφέρουμε την ισορροπία στο νευρικό σας σύστημα.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center gap-6">
+                    <a href="#contact" class="w-full sm:w-auto px-10 py-4 bg-ocean-900 text-white text-sm tracking-widest uppercase hover:bg-ocean-500 transition-colors duration-300 text-center">
+                        Κλειστε Ραντεβου
+                    </a>
+                    <a href="#about" class="w-full sm:w-auto px-10 py-4 border border-ocean-900 text-ocean-900 text-sm tracking-widest uppercase hover:bg-ocean-50 transition-colors duration-300 text-center">
+                        Περισσοτερα
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about" class="py-32 px-6 bg-sand-50 relative">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+            
+            <div class="lg:col-span-6 reveal">
+                <h2 class="text-4xl md:text-5xl font-serif text-ocean-900 mb-8 leading-tight">Ολοκληρωμένη Θεώρηση<br><span class="italic text-ocean-500">Νου & Σώματος</span></h2>
+                <div class="space-y-6 text-lg text-ocean-800/80 font-light leading-relaxed">
+                    <p>
+                        Ο <strong>Βασίλης Αθανασίου</strong> είναι αδειούχος Ψυχολόγος και Ψυχοθεραπευτής, διατηρώντας το ιδιωτικό του γραφείο στην Κυψέλη. Διαθέτει ένα εξαιρετικά ισχυρό και διεθνώς αναγνωρισμένο ακαδημαϊκό υπόβαθρο: μετά τις σπουδές του στο Πανεπιστήμιο Κρήτης και στο Middlesex University του Λονδίνου, απέκτησε Μεταπτυχιακό τίτλο (MSc) στη Νευροψυχολογία από το φημισμένο Maastricht University της Ολλανδίας.
+                    </p>
+                    <p>
+                        Η βαθιά αυτή γνώση της λειτουργίας του εγκεφάλου τον οδήγησε στην επιθυμία να συνδέσει τον νου με το σώμα, ολοκληρώνοντας ένα απαιτητικό, <strong>εξαετές πρόγραμμα εξειδίκευσης στη Σωματική Ψυχοθεραπεία</strong> (Κέντρο «Βίλχελμ Ράιχ»).
+                    </p>
+                    <p>
+                        Στην κλινική του πράξη υιοθετεί το <strong>Συνθετικό μοντέλο</strong> (Integrated Psychotherapy), αντλώντας εργαλεία από τη Γνωσιακή, την Ψυχοδυναμική και τη Gestalt προσέγγιση, δημιουργώντας έναν ασφαλή και συμπεριληπτικό χώρο για την αντιμετώπιση του άγχους, των ψυχοσωματικών διαταραχών και της κατάθλιψης.
+                    </p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 relative reveal delay-200">
+                <div class="relative aspect-[3/4] w-full max-w-[450px] mx-auto img-zoom-container lux-shadow rounded-sm overflow-hidden">
+                    <img src="https://github.com/agelmet/ATHANASIOU/blob/main/IMG_8861.JPG?raw=true" alt="Βασίλης Αθανασίου Portrait" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-[2s]">
+                </div>
+                <div class="absolute inset-0 border border-ocean-300 pointer-events-none transform translate-x-6 translate-y-6 -z-10"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="services" class="py-32 px-6 bg-ocean-900 text-sand-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-20 reveal">
+                <span class="text-ocean-300 text-sm tracking-[0.3em] uppercase mb-4 block">Εξειδικευμενες Υπηρεσιες</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white">Πώς Μπορώ να Βοηθήσω</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <div class="group bg-ocean-800/50 hover:bg-ocean-800 border border-ocean-500/20 p-10 transition-colors duration-500 reveal">
+                    <div class="w-12 h-12 bg-ocean-500/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="activity" class="w-6 h-6 text-ocean-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif italic text-white mb-4">Σωματική Ψυχοθεραπεία & Ψυχοσωματικά</h3>
+                    <p class="text-ocean-100/70 mb-6 font-light leading-relaxed">
+                        Το σώμα μας θυμάται όσα το μυαλό προσπαθεί να ξεχάσει. Όταν το άγχος δεν εκφράζεται, μετατρέπεται σε σύμπτωμα. Σας βοηθώ να "ακούσετε" τα μηνύματα του σώματος και να απελευθερώσετε την εγκλωβισμένη ένταση.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs text-ocean-300 uppercase tracking-wider">
+                        <span>Σωματική Ψυχοθεραπεία (60')</span> • <span>Gestalt Therapy</span>
+                    </div>
+                </div>
+
+                <div class="group bg-ocean-800/50 hover:bg-ocean-800 border border-ocean-500/20 p-10 transition-colors duration-500 reveal delay-100">
+                    <div class="w-12 h-12 bg-ocean-500/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="brain-circuit" class="w-6 h-6 text-ocean-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif italic text-white mb-4">Άγχος, Φοβίες & OCD</h3>
+                    <p class="text-ocean-100/70 mb-6 font-light leading-relaxed">
+                        Συνδυάζοντας γνωσιακή κατανόηση και ψυχοδυναμική διερεύνηση, εντοπίζουμε τα μοτίβα σκέψης που σας εγκλωβίζουν. Χτίζουμε πρακτικούς μηχανισμούς για την αποδυνάμωση των έμμονων ιδεών.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs text-ocean-300 uppercase tracking-wider">
+                        <span>Διαχείριση Στρες (60')</span> • <span>OCD / Φοβίες</span>
+                    </div>
+                </div>
+
+                <div class="group bg-ocean-800/50 hover:bg-ocean-800 border border-ocean-500/20 p-10 transition-colors duration-500 reveal">
+                    <div class="w-12 h-12 bg-ocean-500/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="cloud-rain" class="w-6 h-6 text-ocean-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif italic text-white mb-4">Κατάθλιψη, Πένθος & Θυμός</h3>
+                    <p class="text-ocean-100/70 mb-6 font-light leading-relaxed">
+                        Ένας μη-επικριτικός χώρος για τη δυσκολία διαχείρισης απώλειας ή παρατεταμένης θλίψης. Μαθαίνετε πώς να θέτετε υγιή όρια και να χτίζετε μια σταθερή αυτοεκτίμηση, χωρίς ενοχές.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs text-ocean-300 uppercase tracking-wider">
+                        <span>Διαχείριση Πένθους/Θυμού (60')</span> • <span>Αυτοεκτίμηση</span>
+                    </div>
+                </div>
+
+                <div class="group bg-ocean-800/50 hover:bg-ocean-800 border border-ocean-500/20 p-10 transition-colors duration-500 reveal delay-100">
+                    <div class="w-12 h-12 bg-ocean-500/20 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="users" class="w-6 h-6 text-ocean-300"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif italic text-white mb-4">Συνθετική & Συμβουλευτική Γονέων</h3>
+                    <p class="text-ocean-100/70 mb-6 font-light leading-relaxed">
+                        Η θεραπεία προσαρμόζεται σε εσάς. Παρέχεται ατομική ψυχοθεραπεία (και διαδικτυακά) για ζητήματα προσωπικότητας, καθώς και συμβουλευτική γονέων για βελτίωση οικογενειακών δυναμικών.
+                    </p>
+                    <div class="flex flex-wrap gap-2 text-xs text-ocean-300 uppercase tracking-wider">
+                        <span>Integrated Psychotherapy (60')</span> • <span>Βιντεοκλήση</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="py-32 px-6 bg-sand-100">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-serif text-ocean-900 mb-6">Η Θεραπευτική μου Φιλοσοφία</h2>
+                <p class="text-lg text-ocean-800/80 font-light">Μια βαθιά, βιωματική πορεία που στηρίζεται σε έναν ξεκάθαρο και ασφαλή χάρτη.</p>
+            </div>
+
+            <div class="space-y-12">
+                <div class="flex flex-col md:flex-row gap-6 items-start reveal">
+                    <div class="text-ocean-300 font-serif text-5xl md:text-6xl italic mt-[-10px]">01</div>
+                    <div>
+                        <h4 class="text-xl text-ocean-900 font-medium tracking-wide mb-2 uppercase text-sm">Η Επιστήμη του Εγκεφάλου συναντά τη Σοφία του Σώματος</h4>
+                        <p class="text-ocean-800/70 font-light leading-relaxed">Οι μεταπτυχιακές σπουδές στη Νευροψυχολογία μου επιτρέπουν να κατανοώ τις γνωστικές λειτουργίες του άγχους. Συνδυάζοντάς τες με τη Σωματική Ψυχοθεραπεία, προσφέρουμε ολιστική θεραπεία, "μιλώντας" ταυτόχρονα στη λογική και στο συναίσθημα.</p>
+                    </div>
+                </div>
+                
+                <div class="w-full h-px bg-ocean-300/30 reveal"></div>
+
+                <div class="flex flex-col md:flex-row gap-6 items-start reveal delay-100">
+                    <div class="text-ocean-300 font-serif text-5xl md:text-6xl italic mt-[-10px]">02</div>
+                    <div>
+                        <h4 class="text-xl text-ocean-900 font-medium tracking-wide mb-2 uppercase text-sm">Συνθετική Ευελιξία</h4>
+                        <p class="text-ocean-800/70 font-light leading-relaxed">Δεν υπάρχουν άκαμπτα "καλούπια". Αντλώντας από την Ψυχοδυναμική, τη Γνωσιακή και τη Gestalt θεωρία, σχεδιάζουμε την παρέμβαση. Αν χρειάζεστε δομή, την έχουμε. Αν χρειάζεστε ελεύθερη εξερεύνηση, ακολουθώ.</p>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-ocean-300/30 reveal"></div>
+
+                <div class="flex flex-col md:flex-row gap-6 items-start reveal delay-200">
+                    <div class="text-ocean-300 font-serif text-5xl md:text-6xl italic mt-[-10px]">03</div>
+                    <div>
+                        <h4 class="text-xl text-ocean-900 font-medium tracking-wide mb-2 uppercase text-sm">Βαθιά Κοινωνική Ενσυναίσθηση & Ασφάλεια</h4>
+                        <p class="text-ocean-800/70 font-light leading-relaxed">Η εμπειρία με ευάλωτες κοινωνικές ομάδες διδάσκει την άνευ όρων αποδοχή. Δεν υπάρχει καμία σκέψη που να φέρετε και να κριθεί. Ο στόχος είναι η συνεδρία μας (60') να αποτελεί το πιο ασφαλές καταφύγιο της εβδομάδας σας.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="space" class="py-32 px-6 bg-sand-50 relative border-t border-sand-300/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <span class="text-ocean-500 text-sm tracking-[0.3em] uppercase mb-4 block">Ιδιωτικο Γραφειο | Κυψελη</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-ocean-900 mb-6">Ο Χώρος Θεραπείας</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="reveal overflow-hidden cursor-pointer group lux-shadow bg-white p-2" onclick="openLightbox('https://cdn.doctoranytime.gr/practices/e7b01a23-3bbc-4ced-9d46-30dc525677e2.jpg')">
+                    <div class="relative w-full h-[400px] overflow-hidden">
+                        <img src="https://cdn.doctoranytime.gr/practices/e7b01a23-3bbc-4ced-9d46-30dc525677e2.jpg" alt="Χώρος γραφείου" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-ocean-900/0 group-hover:bg-ocean-900/20 transition-colors duration-500 flex items-center justify-center">
+                            <i data-lucide="maximize-2" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-8 h-8"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal delay-100 overflow-hidden cursor-pointer group lux-shadow bg-white p-2" onclick="openLightbox('https://cdn.doctoranytime.gr/practices/98b16f33-0fec-478d-8a86-b966a526230c.jpg')">
+                    <div class="relative w-full h-[400px] overflow-hidden">
+                        <img src="https://cdn.doctoranytime.gr/practices/98b16f33-0fec-478d-8a86-b966a526230c.jpg" alt="Χώρος γραφείου" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-ocean-900/0 group-hover:bg-ocean-900/20 transition-colors duration-500 flex items-center justify-center">
+                            <i data-lucide="maximize-2" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-8 h-8"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal delay-200 overflow-hidden cursor-pointer group lux-shadow bg-white p-2" onclick="openLightbox('https://cdn.doctoranytime.gr/practices/0ecff1ce-870b-4f47-9dc9-6ed2b6d21147.jpg')">
+                    <div class="relative w-full h-[400px] overflow-hidden">
+                        <img src="https://cdn.doctoranytime.gr/practices/0ecff1ce-870b-4f47-9dc9-6ed2b6d21147.jpg" alt="Χώρος γραφείου" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-ocean-900/0 group-hover:bg-ocean-900/20 transition-colors duration-500 flex items-center justify-center">
+                            <i data-lucide="maximize-2" class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 w-8 h-8"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="fixed inset-0 z-[100] flex items-center justify-center cursor-zoom-out bg-ocean-900/95" onclick="closeLightbox()">
+        <button class="absolute top-8 right-8 text-white/50 hover:text-white transition-colors">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Enlarged" class="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl cursor-default" onclick="event.stopPropagation()">
+    </div>
+
+    <section class="py-24 bg-white overflow-hidden border-t border-sand-100">
+        <div class="max-w-7xl mx-auto px-6 mb-16 text-center reveal">
+            <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" alt="Doctoranytime" class="h-10 mx-auto mb-6 opacity-80 mix-blend-multiply">
+            <h2 class="text-3xl md:text-4xl font-serif text-ocean-900 mb-4">Εμπειρίες Θεραπευόμενων</h2>
+        </div>
+
+        <div class="w-full overflow-hidden relative pb-10">
+            <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+            
+            <div class="marquee-container animate-marquee">
+                <div class="flex space-x-6 px-3" id="review-track">
+                    <div class="w-[350px] bg-sand-50 p-8 shrink-0 border border-ocean-100/50 relative">
+                        <div class="flex justify-between items-center mb-6 border-b border-ocean-300/20 pb-4">
+                            <div>
+                                <span class="text-ocean-900 font-serif italic text-2xl">10.0</span>
+                                <span class="text-ocean-500 text-xs tracking-widest uppercase block mt-1">Dima • 2 αξιολογησεις</span>
+                            </div>
+                            <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 mix-blend-multiply opacity-50" alt="DA">
+                        </div>
+                        <p class="text-ocean-800/80 text-sm font-light leading-relaxed">"Από τους λίγους που πραγματικά σε ακούνε. Νιώθεις πως ενδιαφέρεται ειλικρινά και θέλει να σε βοηθήσει, όχι απλώς να κάνει τη δουλειά του."</p>
+                        <p class="text-[0.65rem] text-ocean-500 uppercase tracking-widest mt-6">10 Νοεμβριου 2025</p>
+                    </div>
+
+                    <div class="w-[350px] bg-sand-50 p-8 shrink-0 border border-ocean-100/50 relative">
+                        <div class="flex justify-between items-center mb-6 border-b border-ocean-300/20 pb-4">
+                            <div>
+                                <span class="text-ocean-900 font-serif italic text-2xl">10.0</span>
+                                <span class="text-ocean-500 text-xs tracking-widest uppercase block mt-1">Μαρία • 1 αξιολογηση</span>
+                            </div>
+                            <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 mix-blend-multiply opacity-50" alt="DA">
+                        </div>
+                        <p class="text-ocean-800/80 text-sm font-light leading-relaxed">"Από την πρώτη στιγμή ένιωσα εμπιστοσύνη και ασφάλεια. Κατάφερα να δουλέψω βαθύτερα ζητήματα... Μια από τις πιο σημαντικές αποφάσεις για τον εαυτό μου."</p>
+                        <p class="text-[0.65rem] text-ocean-500 uppercase tracking-widest mt-6">14 Οκτωβριου 2025</p>
+                    </div>
+
+                    <div class="w-[350px] bg-sand-50 p-8 shrink-0 border border-ocean-100/50 relative">
+                        <div class="flex justify-between items-center mb-6 border-b border-ocean-300/20 pb-4">
+                            <div>
+                                <span class="text-ocean-900 font-serif italic text-2xl">10.0</span>
+                                <span class="text-ocean-500 text-xs tracking-widest uppercase block mt-1">Βασίλης • 5 αξιολογησεις</span>
+                            </div>
+                            <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 mix-blend-multiply opacity-50" alt="DA">
+                        </div>
+                        <p class="text-ocean-800/80 text-sm font-light leading-relaxed">"Πολύ ουσιαστική προσέγγιση, πρακτικά βήματα και αισθητή μείωση άγχους μέσα σε λίγες εβδομάδες. Γίνεται θεραπεία σε βάθος."</p>
+                        <p class="text-[0.65rem] text-ocean-500 uppercase tracking-widest mt-6">03 Οκτωβριου 2025</p>
+                    </div>
+
+                    <div class="w-[350px] bg-sand-50 p-8 shrink-0 border border-ocean-100/50 relative">
+                        <div class="flex justify-between items-center mb-6 border-b border-ocean-300/20 pb-4">
+                            <div>
+                                <span class="text-ocean-900 font-serif italic text-2xl">10.0</span>
+                                <span class="text-ocean-500 text-xs tracking-widest uppercase block mt-1">Nikos • 4 αξιολογησεις</span>
+                            </div>
+                            <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 mix-blend-multiply opacity-50" alt="DA">
+                        </div>
+                        <p class="text-ocean-800/80 text-sm font-light leading-relaxed">"Η διαδικασία έχει ενδιαφέρον. Υπάρχει καλή επικοινωνία, είναι φιλικός αλλά και επαγγελματίας. Συνεχίζω να πηγαίνω."</p>
+                        <p class="text-[0.65rem] text-ocean-500 uppercase tracking-widest mt-6">11 Ιανουαριου 2024</p>
+                    </div>
+
+                    <div class="w-[350px] bg-sand-50 p-8 shrink-0 border border-ocean-100/50 relative">
+                        <div class="flex justify-between items-center mb-6 border-b border-ocean-300/20 pb-4">
+                            <div>
+                                <span class="text-ocean-900 font-serif italic text-2xl">10.0</span>
+                                <span class="text-ocean-500 text-xs tracking-widest uppercase block mt-1">Myrsini • 2 αξιολογησεις</span>
+                            </div>
+                            <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 mix-blend-multiply opacity-50" alt="DA">
+                        </div>
+                        <p class="text-ocean-800/80 text-sm font-light leading-relaxed">"Ειναι πολυ θετικος ανθρωπος, φαινεται πως ξερει τι λεει και σε κανει να νοιωθεις απολυτη εμπιστοσυνη απο τη αρχη."</p>
+                        <p class="text-[0.65rem] text-ocean-500 uppercase tracking-widest mt-6">23 Απριλιου 2021</p>
+                    </div>
+                    
+                    <div class="w-[350px] bg-sand-50 p-8 shrink-0 border border-ocean-100/50 relative">
+                        <div class="flex justify-between items-center mb-6 border-b border-ocean-300/20 pb-4">
+                            <div>
+                                <span class="text-ocean-900 font-serif italic text-2xl">10.0</span>
+                                <span class="text-ocean-500 text-xs tracking-widest uppercase block mt-1">Dima • 2 αξιολογησεις</span>
+                            </div>
+                            <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 mix-blend-multiply opacity-50" alt="DA">
+                        </div>
+                        <p class="text-ocean-800/80 text-sm font-light leading-relaxed">"Από τους λίγους που πραγματικά σε ακούνε. Νιώθεις πως ενδιαφέρεται ειλικρινά και θέλει να σε βοηθήσει, όχι απλώς να κάνει τη δουλειά του."</p>
+                        <p class="text-[0.65rem] text-ocean-500 uppercase tracking-widest mt-6">10 Νοεμβριου 2025</p>
+                    </div>
+
+                    <div class="w-[350px] bg-sand-50 p-8 shrink-0 border border-ocean-100/50 relative">
+                        <div class="flex justify-between items-center mb-6 border-b border-ocean-300/20 pb-4">
+                            <div>
+                                <span class="text-ocean-900 font-serif italic text-2xl">10.0</span>
+                                <span class="text-ocean-500 text-xs tracking-widest uppercase block mt-1">Μαρία • 1 αξιολογηση</span>
+                            </div>
+                            <img src="https://raw.githubusercontent.com/agelmet/KARAZOLI/refs/heads/main/lgoodoc.jpg" class="h-5 mix-blend-multiply opacity-50" alt="DA">
+                        </div>
+                        <p class="text-ocean-800/80 text-sm font-light leading-relaxed">"Από την πρώτη στιγμή ένιωσα εμπιστοσύνη και ασφάλεια. Κατάφερα να δουλέψω βαθύτερα ζητήματα... Μια από τις πιο σημαντικές αποφάσεις για τον εαυτό μου."</p>
+                        <p class="text-[0.65rem] text-ocean-500 uppercase tracking-widest mt-6">14 Οκτωβριου 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://www.doctoranytime.gr/d/Psychologos/athanasiou-vasilis" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-medium tracking-widest uppercase text-ocean-900 hover:text-ocean-500 transition-colors border-b border-ocean-900 hover:border-ocean-500 pb-1">
+                    Ολες οι Αξιολογησεις
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-ocean-900 text-sand-50 pt-32 pb-12 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[40rem] h-[40rem] bg-ocean-500/5 rounded-full blur-[100px] transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-12 gap-16 lg:gap-8 mb-24">
+                
+                <div class="md:col-span-5 reveal">
+                    <span class="font-serif italic text-3xl md:text-4xl text-white tracking-wide block mb-6">Βασίλης Αθανασίου</span>
+                    <p class="text-ocean-300 font-light leading-relaxed max-w-sm mb-10">
+                        Επικοινωνήστε για να ορίσουμε την πρώτη σας συνεδρία σε ένα περιβάλλον απόλυτης αποδοχής και ασφάλειας.
+                    </p>
+                    <a href="https://www.doctoranytime.gr/d/Psychologos/athanasiou-vasilis" target="_blank" class="inline-flex items-center justify-center bg-white text-ocean-900 px-8 py-4 text-sm tracking-widest uppercase hover:bg-ocean-300 transition-colors duration-300">
+                        Κλειστε Ραντεβου
+                    </a>
+                </div>
+
+                <div class="md:col-span-4 reveal delay-100">
+                    <h4 class="text-xs text-ocean-500 mb-8 uppercase tracking-[0.2em]">Επικοινωνια</h4>
+                    <ul class="space-y-6 text-white font-light">
+                        <li class="flex items-start gap-4">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-ocean-300 shrink-0 mt-0.5"></i>
+                            <span class="leading-relaxed">Πιπίνου 22, Κυψέλη,<br>Αττική</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i data-lucide="phone" class="w-5 h-5 text-ocean-300 shrink-0"></i>
+                            <a href="tel:+306943802083" class="hover:text-ocean-300 transition-colors">+30 6943 802083</a>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <i data-lucide="clock" class="w-5 h-5 text-ocean-300 shrink-0"></i>
+                            <span>Δευτέρα - Σάββατο (Κατόπιν Ραντεβού)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3 reveal delay-200">
+                    <h4 class="text-xs text-ocean-500 mb-8 uppercase tracking-[0.2em]">Social & Links</h4>
+                    <div class="flex items-center gap-6">
+                        <a href="https://www.linkedin.com/in/vassilis-athanasiou-37401515a/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-ocean-500/30 flex items-center justify-center hover:bg-ocean-500 transition-colors">
+                            <i data-lucide="linkedin" class="w-4 h-4 text-white"></i>
+                        </a>
+                        <a href="https://www.facebook.com/vassilis.athanasiou.9/" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-ocean-500/30 flex items-center justify-center hover:bg-ocean-500 transition-colors">
+                            <i data-lucide="facebook" class="w-4 h-4 text-white"></i>
+                        </a>
+                        <a href="https://www.doctoranytime.gr/d/Psychologos/athanasiou-vasilis" target="_blank" rel="noopener" class="w-10 h-10 rounded-full border border-ocean-500/30 flex items-center justify-center hover:bg-ocean-500 transition-colors bg-white/5">
+                            <span class="text-xs font-bold text-white uppercase">DA</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-ocean-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light tracking-wide text-ocean-500 reveal">
+                <p>&copy; 2026 Βασίλης Αθανασίου. Όλα τα δικαιώματα διατηρούνται.</p>
+                <p>
+                    Designed by <a href="https://advonmedia.com" target="_blank" rel="noopener" class="text-ocean-300 hover:text-white transition-colors uppercase tracking-[0.2em]">Advon Media</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Initialize Icons
+        lucide.createIcons();
+
+        // 2. Mobile Menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // 3. Navbar Scroll Logic
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'shadow-sm');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2', 'shadow-sm');
+            }
+        });
+
+        // 4. Intersection Observer for Reveals
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 5. Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                lightboxImg.src = '';
+                document.body.style.overflow = '';
+            }, 500);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+        });
+    </script>
+</body>
+</html>
